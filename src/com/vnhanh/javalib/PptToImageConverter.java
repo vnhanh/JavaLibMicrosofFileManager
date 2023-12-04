@@ -1,3 +1,4 @@
+package com.vnhanh.javalib;
 
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -10,9 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class PptToImageConverter {
-    void convert(File file) {
+    ArrayList<String> convert(File file) {
+        ArrayList<String> listOfImages = new ArrayList<>();
         try {
             XMLSlideShow ppt = new XMLSlideShow(new FileInputStream(file));
 
@@ -51,14 +54,20 @@ public class PptToImageConverter {
 
                 //render
                 slides.get(i).draw(graphics);
+                String imageName = "ppt_image_" + i + ".png";
 
+                System.out.println("just drawn a graphic for slide " + i + " and image name " + imageName);
                 //creating an image file as output
-                out = new FileOutputStream("ppt_image_" + i + ".png");
+
+                out = new FileOutputStream(imageName);
                 ImageIO.write(img, "png", out);
+                listOfImages.add(imageName);
                 out.close();
             }
         } catch (Exception e) {
             System.out.println("Caught exception " + e.getMessage());
         }
+
+        return listOfImages;
     }
 }
