@@ -8,16 +8,15 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class PptToImageConverter {
-    public ArrayList<String> convert(File file) {
+    public ArrayList<String> convert(InputStream fis) {
         ArrayList<String> listOfImages = new ArrayList<>();
         try {
-            XMLSlideShow ppt = new XMLSlideShow(new FileInputStream(file));
+            XMLSlideShow ppt = new XMLSlideShow(fis);
 
             //set zoom factor
             double zoom = .5d;
