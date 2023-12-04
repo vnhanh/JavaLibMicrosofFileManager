@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class PptToImageConverter {
-    ArrayList<String> convert(File file) {
+    public ArrayList<String> convert(File file) {
         ArrayList<String> listOfImages = new ArrayList<>();
         try {
             XMLSlideShow ppt = new XMLSlideShow(new FileInputStream(file));
